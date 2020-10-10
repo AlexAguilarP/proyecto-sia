@@ -1,4 +1,4 @@
-/**
+/*
  * @license
  * Copyright Akveo. All Rights Reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
@@ -10,4 +10,14 @@
 
 export const environment = {
   production: false,
+  firebaseConfig: {
+    apiKey: 'AIzaSyDrllIh_TmQaZmlvxITLI9gbSSxUg_BErg',
+    authDomain: 'sia-proyecto.firebaseapp.com',
+    databaseURL: 'https://sia-proyecto.firebaseio.com',
+    projectId: 'sia-proyecto',
+    storageBucket: 'sia-proyecto.appspot.com',
+    messagingSenderId: '625900791768',
+    appId: '1:625900791768:web:6cd5d4774756333bcd74ad',
+    measurementId: 'G-KZZY8Z5DVL',
+  },
 };

@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "sia-proyecto": {
+      "hosting": {
+        "ngx-admin-demo": [
+          "sia-proyecto"
+        ]
+      }
+    }
+  }
+}

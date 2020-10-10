@@ -32,3 +32,5 @@ com/angular/angular-cli/blob/master/README.md).
 - Rutas principales
 - Core Module (services, interfaces)
 - Login & Register Module (component)
+- Instalacion de Firebase
+- Nomenclatura del Proyecto

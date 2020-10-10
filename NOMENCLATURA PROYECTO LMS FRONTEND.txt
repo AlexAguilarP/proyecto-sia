@@ -1,0 +1,138 @@
+FRONTEND - ESTRUCTURA DE PROYECTO
+	- Modulos 
+		- los modulos deben ser por conjunto de componentes 
+		Ej: Modulo para para las CURSOS (en el tienen que ir los componentes relacionados al modulo)
+		- los modulos deben ser creados con el comando CLI "ng generate module nombreDelModulo" => resultado nombre-del-modulo.module.ts
+		- en caso de que sea necesario tener rutas dentro del modulo agregar la bandera "--routing"
+		- Se utiliza la nomenclatura camelCase (pero de preferencia es mejor usar una sola palabra)
+		- se deben importar los componentes que se usan dentro de su respectivo modulo
+	- Componentes
+		- Los componentes deben tener el nombre de referencia a la pantalla
+		Ej: actividades --> el nombre hace referencia a que sera la pantalla donde se mostraran actividades
+		- Todos los componentes a crear deben estar dentro de la carpeta pages junto a su respectivo modulo.
+		Ej: scr/app/pages/[componente-creado] --> con el comando CLI "ng generate component pages/actividades"
+		- En caso de que el componente tenga varios sub-componentes estos deben estar en una carpeta principal esta debe tener su nombre en plural
+		Ej: scr/app/pages/[carpeta-principal]/[componente-creado] -->
+scr/app/pages/[actividades]/[crear-actividad] --> con el comando CLI "ng generate component pages/actividades/crear-actividad"
+	- Servicios 
+		- Los servicios deben estar en la carpeta services
+		- Los servicios deben ser creados con el comando CLI "ng generate service services/nombreDelServicio" => resultado nombre-del-servicio.service.ts
+		- Se utiliza la nomenclatura camelCase (pero de preferencia es mejor usar una sola palabra)
+		- En el servicio deben estar las funciones que se repitan o que sean nesesarias ser llamadas desde cualquier componente
+		- Utilizar en especial para las llamadas a las API's del BACKEND o usar el localstorage
+	- Funciones o metodos:
+		- Se utiliza la nomenclatura camelCase. Ej: registrarDocente().
+		- No se deben utilizar barras bajas ni otros simbolos para simular espacios. Ej: registrar_docente().
+
+	- Comentarios
+		- Cada funcion creada debe contar con su respectivo comentario.
+
+			Ejemplo de comentario:
+
+			/**
+			* Descripcion: La funcion lista todas los detalles de la actividad.
+			* Tipo: obtencion de evento
+			* parametro: id[number]
+			* @Autor: Alex Aguilar
+			*/
+
+			listarActividad(id: number)
+			{
+
+			}
+
+	- Metodos de peticion
+		- Dependiendo del tipo de peticion se utilizaran los distintos tipos de metodos.
+		- GET: Metodo utilizado para obtener datos (listados, reportes, etc.).
+		- POST: Metodo utilizado para registrar nuevos datos (formularios para registrar).
+		- PUT: Metodo utilizado para editar datos (formularios para editar).
+	- Formularios
+		- Para el uso de formularios es recomendable usar Reactive forms de Angular
+		- Validar los datos con Reactive forms
+	- URL's
+		- Las URL's deben ir en minuscula.
+		- Las rutas(PATH) se crean en pages.routing.module.ts en // const routes: Routes = [{ "ruta" }]
+		- Para las rutas es necesario importar el modulo del componente en la cabecera del pages.routing.module.ts
+			Ej:import { DashboardComponent } from './dashboard/dashboard.component';
+		- Las rutas, en caso de que lo necesiten, deben ir separadas por guiones (-).
+		- Las rutas siempre deben empezar con el nombre de la carpeta principal de los sub-componentes.
+		- Se debe añadir un comentario que indica el inicio de un grupo de rutas.
+
+			Ejemplo de rutas:
+
+			/* RUTA LOGIN*/ --> ruta simple
+			import { LoginComponent} from './pages/login/login.component';
+			{
+        			path: 'Login',
+        			component: LoginComponent
+			}
+
+			/* RUTAS ACTIVIDADES */ --> rutas compuestas --> URL EN NAVEGADOR: actividades/lista // actividades/ver-actividad/5
+			{
+    				path: 'actividades',
+				children: [
+					{
+			        	path: 'lista',
+				        component: ListaActividadesComponent
+					},
+					{
+					path: 'ver-actividad/:id',
+					component: VerActividadComponent
+					}
+				]
+  			},
+			/* RUTAS POR MODULO */ 
+			// la interaccion cambia cuando se utiliza un modulo para llamar a los componentes
+			{
+			    path: 'login',
+			    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
+			},
+	- Interfaces 
+		- las Interfaces son necesarias para manejar de manera optima los JSON que recibimos del BACKEND
+		- Las interaces deben ser creadas dentro de la carpeta interfaces con el comando CLI "ng generate interface interfaces/usuarioInterface"
+		EJ:
+		// JSON del BACKEND
+		{
+		    "nombre": "Alex",
+		    "apellido": "Aguilar",
+		    "edad": 20 
+		}
+		// interface creada para el objeto
+		export interface UsuarioInterface {
+		    nombre:   string;
+		    apellido: string;
+		    edad:     number;
+		}
+
+
+	- Variables
+		- Se utiliza la nomenclatura camelCase. Ej: idUsuario.
+		- Si la variable engloba varios datos (colecciones o arrays), el nombre debe ir en plural, si lleva un solo dato debe ir en singular.
+		- El nombre de una variable debe describir para que fue utilizada o cual es su valor.
+		- En lo posible no se deben utilizar abreviaciones de palabras para nombrar las variables.
+		- No se deben utilizar barras bajas ni otros simbolos para simular espacios. Ej: id_usuario.
+		- No se deben utilizar numeros en los nombres de variables. Ej: usuario1.
+		- Declarar todas las variables y sus respectivos tipo_de_variable despues de la exportacion del componente
+		- Al usar typescript todas las variables deben estar tipadas (se debe procurar usar el tipado 'any' lo menos posible)
+		Ejemplo de manejo de variable
+		export class DashboardComponent {
+			palabra: string; // palabra variable de tipo string solo caracteres
+			arreglos: []; //arreglos variable de tipo array
+			numero: number; // variable de tipo numero solo recibe numeros
+			objeto: {}; //objetos variable de tipo objeto
+			...
+
+GENERAL
+
+	- Si creen que alguna parte del codigo necesita un comentario para explicar su funcionamiento, pueden agregar ese comentario.
+	- Debemos utilizar un solo formato de fecha año/mes/dia
+	- En lo posible debemos usar la menor cantidad de lineas de codigo para realizar algun proceso.
+	- habra un encargado de unir las ramas de los colaboradores para que luego todo el equipo este actualizado.
+	- el responsable de cada rama debe informar cuando su rama puede realizar el merge
+	- cuando el Responsable de unir las ramas haya acabado todos los colaboradores deben actualizar sus ramas
+RECOMENDACIONES
+	- usar VSCODE para el desarrollo del proyecto en angular
+	- instalar el pack de extenciones de Angular (https://marketplace.visualstudio.com/items?itemName=johnpapa.angular-essentials)
+	- en caso de tener alguna duda comunicarse con el resposable de proyecto
+	
+
