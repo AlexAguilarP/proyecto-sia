@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { InfiniteListComponent } from '../layout/infinite-list/infinite-list.component';
+import { InfraccionesComponent } from './componentes/infracciones/infracciones.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: InfiniteListComponent,
+    component: InfraccionesComponent,
   },
 ];
 
