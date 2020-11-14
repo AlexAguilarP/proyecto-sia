@@ -1,0 +1,153 @@
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/materialicons/v67/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+._cuerpo {
+  padding-top: 3%;
+}
+
+.mat-error {
+  text-transform: capitalize;
+}
+
+.fondo {
+  background-color: black;
+  margin: 0;
+}
+
+._ladoI {
+  min-height: 300px;
+}
+
+.imagenIzquierda {
+  width: 100%;
+  height: 100%;
+}
+
+.imagenLogo {
+  max-height: 100px;
+}
+
+._ladoD {
+  padding-top: 5%;
+  padding-bottom: 5%;
+  height: 100%;
+  max-width: 450px;
+}
+
+.botonRegistrar {
+  padding: 2%;
+  font-size: 20px !important;
+  min-width: auto !important;
+}
+
+.redesSociales {
+  font-size: 25px;
+}
+
+.grupoBotonRedes {
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+/**
+ * Ajuste de estilos dependiendo a las resoluciones del dispositivo
+ */
+
+/* Smartphone (Galaxy Fold) ----------- */
+@media only screen and (min-device-width : 279px) and (max-device-width: 319px) {
+
+  /* Styles */
+  .fondo {
+    height: auto;
+  }
+
+  .grupoBotonRedes {
+    margin-left: 0%;
+    margin-right: 0%;
+  }
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 540px) {
+
+  /* Styles */
+  .fondo {
+    height: auto;
+  }
+
+  .grupoBotonRedes {
+    margin-left: 8%;
+    margin-right: 8%;
+  }
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-device-width : 320px) {
+
+  /* Styles */
+  .fondo {
+    height: auto;
+  }
+
+  .grupoBotonRedes {
+    margin-left: 8%;
+    margin-right: 8%;
+  }
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+
+  .fondo {
+    height: 100%;
+  }
+
+  /* Styles */
+  .grupoBotonRedes {
+    margin-left: 12%;
+    margin-right: 12%;
+  }
+
+  ._cuerpo {
+    padding-top: 27%;
+  }
+}
+
+/* Desktops and laptops ----------- */
+@media only screen and (min-width : 1224px) {
+
+  /* Styles */
+  .fondo {
+    height: 100%;
+  }
+}

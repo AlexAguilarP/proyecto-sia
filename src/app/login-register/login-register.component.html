@@ -1,1 +1,122 @@
-<p>login-register works!</p>
+<nb-layout>
+  <nb-layout-column>
+    <div class="fondo">
+      <div class="_cuerpo">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 _ladoI">
+              <img class="imagenIzquierda" src="assets/images/kitten-dark.png" alt="">
+            </div>
+            <div class="col-md-6 _ladoD">
+              <mat-card>
+                <mat-card-header class="justify-content-center">
+                  <div class="justify-content-center">
+                    <img src="assets/img/Iconos/logoAcademia.png" class="imagenLogo" />
+                  </div>
+                </mat-card-header>
+                <div class="full-width">
+                  <mat-card-title>Registra un Usuario:</mat-card-title>
+                </div>
+                <mat-tab-group>
+                  <mat-card-content>
+                    <mat-tab label="Iniciar Sesion">
+                      <div class="container">
+                        <form [formGroup]="formLogin" (ngSubmit)="submitLogin($event)" autocomplete="off">
+                          <mat-form-field appearance="outline" class="col-md-12">
+                            <mat-label>Correo Electronico</mat-label>
+                            <input matInput placeholder="correo@mail.com" formControlName="correo_usuario">
+                            <mat-error *ngIf="correoError.hasError('required')">el campo es requrido</mat-error>
+                            <mat-error *ngIf="correoError.hasError('email')">el dato tiene que ser un correo electronico
+                              valido
+                            </mat-error>
+                          </mat-form-field>
+                          <mat-form-field appearance="outline" class="col-md-12">
+                            <mat-label>Contraseña</mat-label>
+                            <input matInput [type]="hide ? 'password' : 'text'" placeholder="Contraseña"
+                              formControlName="password">
+                            <mat-error *ngIf="passwordError.hasError('required')">el campo es requrido</mat-error>
+                            <mat-error *ngIf="passwordError.hasError('minlength')">el minimo de caracteres es 6
+                            </mat-error>
+                            <button type="button" mat-icon-button matSuffix (click)="hide = !hide"
+                              [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                          </mat-form-field>
+                          <mat-card-actions align=center>
+                            <button [disabled]="formLogin.invalid" type="submit" mat-raised-button
+                              class="botonRegistrar" color="primary">Iniciar Sesion</button>
+                          </mat-card-actions>
+                        </form>
+                      </div>
+                    </mat-tab>
+                    <mat-tab label="Registrarme">
+                      <div class="container">
+                        <form [formGroup]="formRegistro" (ngSubmit)="submitRegistrar($event)" autocomplete="off">
+                          <mat-form-field appearance="outline" class="col-md-12">
+                            <mat-label>Correo Electronico</mat-label>
+                            <input matInput placeholder="correo@mail.com" formControlName="correo_usuario">
+                            <mat-error *ngIf="correoError.hasError('required')">el campo es requrido</mat-error>
+                            <mat-error *ngIf="correoError.hasError('email')">el dato tiene que ser un correo electronico
+                              valido
+                            </mat-error>
+                          </mat-form-field>
+                          <mat-form-field appearance="outline" class="col-md-12">
+                            <mat-label>Contraseña</mat-label>
+                            <input matInput (keyup)="comprobar()" [type]="hide ? 'password' : 'text'"
+                              placeholder="Contraseña" formControlName="password">
+                            <mat-error *ngIf="passwordError.hasError('required')">el campo es requrido</mat-error>
+                            <mat-error *ngIf="passwordError.hasError('minlength')">el minimo de caracteres es 6
+                            </mat-error>
+                            <button type="button" mat-icon-button matSuffix (click)="hide = !hide"
+                              [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                          </mat-form-field>
+                          <mat-form-field appearance="outline" class="col-md-12">
+                            <mat-label>Repite tu Contraseña</mat-label>
+                            <input matInput (keyup)="comprobar()" [type]="hide ? 'password' : 'text'"
+                              placeholder="Contraseña" formControlName="password2">
+                            <mat-error *ngIf="passwordError.hasError('required')">el campo es requrido</mat-error>
+                            <mat-error *ngIf="passwordError.hasError('minlength')">el minimo de caracteres es 6
+                            </mat-error>
+                            <mat-hint *ngIf="!comprobarPass && passwordError2.touched">las contraseñas no coinciden
+                            </mat-hint>
+                            <button type="button" mat-icon-button matSuffix (click)="hide = !hide"
+                              [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                          </mat-form-field>
+                          <input type="hidden" formControlName="ver">
+                          <mat-card-actions align=center>
+                            <button [disabled]="formRegistro.invalid" type="submit" mat-raised-button
+                              class="botonRegistrar" color="primary">Registrarme</button>
+                          </mat-card-actions>
+                        </form>
+                      </div>
+                    </mat-tab>
+                  </mat-card-content>
+                </mat-tab-group>
+                <mat-card-header>
+                  <mat-card-title>Ingresar con:</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                  <div class="grupoBotonRedes">
+                    <div class="d-flex align-content-center justify-content-center">
+                      <div class="col" align="center">
+                        <button mat-raised-button type="button" color="warn" (click)="login()">
+                          <mat-icon fontSet="fab" fontIcon="fa-google" class="redesSociales"></mat-icon> Inicia Sesion
+                          con Google
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </mat-card-content>
+              </mat-card>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </nb-layout-column>
+</nb-layout>

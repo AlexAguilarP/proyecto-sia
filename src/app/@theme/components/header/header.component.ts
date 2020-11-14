@@ -3,9 +3,11 @@ import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeServ
 
 import { UserData } from '../../../@core/data/users';
 import { LayoutService } from '../../../@core/utils';
-import { map, takeUntil } from 'rxjs/operators';
+import { filter, map, takeUntil } from 'rxjs/operators';
 import { Subject, Observable } from 'rxjs';
 import { RippleService } from '../../../@core/utils/ripple.service';
+import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'ngx-header',
@@ -48,7 +50,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   currentTheme = 'default';
 
-  userMenu = [ { title: 'Profile' }, { title: 'Log out' } ];
+  userMenu = [{ title: 'Profile' }, { title: 'Log out' }];
 
   public constructor(
     private sidebarService: NbSidebarService,
@@ -58,6 +60,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private layoutService: LayoutService,
     private breakpointService: NbMediaBreakpointsService,
     private rippleService: RippleService,
+    public auth: AngularFireAuth,
+    private router: Router,
   ) {
     this.materialTheme$ = this.themeService.onThemeChange()
       .pipe(map(theme => {
@@ -65,14 +69,25 @@ export class HeaderComponent implements OnInit, OnDestroy {
         return themeName.startsWith('material');
       }));
   }
-
+  logout() {
+    this.auth.signOut();
+    localStorage.removeItem('datosUsuario');
+    localStorage.removeItem('token');
+  }
   ngOnInit() {
     this.currentTheme = this.themeService.currentTheme;
-
-    this.userService.getUsers()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((users: any) => this.user = users.nick);
-
+    this.user = JSON.parse(localStorage.getItem('datosUsuario'));
+    console.log(this.user);
+    this.menuService.onItemClick()
+      .pipe(filter(({ tag }) => tag === 'my-context-menu'),
+        map(({ item: { title } }) => title),
+      )
+      .subscribe(title => {
+        if (title === 'Log out') {
+          this.logout();
+          this.router.navigateByUrl('login-register');
+        }
+      });
     const { xl } = this.breakpointService.getBreakpointsMap();
     this.themeService.onMediaQueryChange()
       .pipe(
