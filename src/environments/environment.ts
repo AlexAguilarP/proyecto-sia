@@ -11,13 +11,13 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: 'AIzaSyDrllIh_TmQaZmlvxITLI9gbSSxUg_BErg',
-    authDomain: 'sia-proyecto.firebaseapp.com',
-    databaseURL: 'https://sia-proyecto.firebaseio.com',
-    projectId: 'sia-proyecto',
-    storageBucket: 'sia-proyecto.appspot.com',
-    messagingSenderId: '625900791768',
-    appId: '1:625900791768:web:6cd5d4774756333bcd74ad',
-    measurementId: 'G-KZZY8Z5DVL',
+    apiKey: 'AIzaSyAqwJxO9mWgfEtKXC6doWbAhlOA3p_o3q8',
+    authDomain: 'proyecto-sia-c2da6.firebaseapp.com',
+    databaseURL: 'https://proyecto-sia-c2da6.firebaseio.com',
+    projectId: 'proyecto-sia-c2da6',
+    storageBucket: 'proyecto-sia-c2da6.appspot.com',
+    messagingSenderId: '1021798500668',
+    appId: '1:1021798500668:web:f84764111dd28c3943b639',
+    measurementId: 'G-DYK36KYW6D',
   },
 };

@@ -58,8 +58,10 @@
       [matRippleCentered]="true">
       <nb-user [nbContextMenu]="userMenu"
                [onlyPicture]="userPictureOnly"
-               [name]="user?.name"
-               [picture]="user?.picture">
+               [name]="user?.displayName"
+               [title]="user?.email"
+               [picture]="user?.photoURL"
+               nbContextMenuTag="my-context-menu">
       </nb-user>
     </nb-action>
   </nb-actions>
