@@ -1,1 +1,16 @@
-<p>estadisticas works!</p>
+
+
+<ngx-charts-line-chart
+  [view]="[1000,400]"
+  [scheme]="colorScheme"
+  [legend]="true"
+  [showXAxisLabel]="true"
+  [showYAxisLabel]="true"
+  [xAxis]="true"
+  [yAxis]="true"
+  [xAxisLabel]="'Fecha y hora'"
+  [yAxisLabel]="'Cantidad de autos'"
+  [timeline]="true"
+  [results]="multi"
+  >
+</ngx-charts-line-chart>
