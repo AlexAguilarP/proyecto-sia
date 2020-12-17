@@ -1,1 +1,23 @@
-<p>perfil works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Imagen de Perfil</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image [src]="datos.photoURL" (click)="foto.click()">
+      </mat-card>
+      <input type="file" name="foto" #foto (change)="uploadImage($event.target.files[0])" hidden>
+    </div>
+    <div class="col-md-8">
+      <form [formGroup]="fomrUsuario" (ngSubmit)="saveUserProfile($event)">
+        <mat-form-field>
+          <mat-label>Nombre de Usuario</mat-label>
+          <input matInput placeholder="nombre de usuario" formControlName="nombre_usuario">
+        </mat-form-field>
+        <hr>
+        <button mat-raised-button color="primary" type="submit">Guardar</button>
+      </form>
+    </div>
+  </div>
+</div>

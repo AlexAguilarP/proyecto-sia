@@ -1,1 +1,24 @@
-<p>infracciones works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4" *ngFor="let inf of datos">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>infraccion placa:{{inf.placa}}</mat-card-title>
+          <mat-card-subtitle>Fecha infraccion: {{inf.date | date:'full':'es-Bo'}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="{{inf.foto}}" alt="" height="250px">
+        <mat-card-content>
+          <div *ngIf="inf.propietario != undefined; else elseBlock">
+            <h5>Datos Relacionados al Vehiculo</h5>
+            <h5>Nombre del Dueño: {{inf.propietario?.nombres_conductor}} {{inf.propietario?.apellidos_conductor}}</h5>
+            <h5>Correo Electronico: {{inf.propietario?.correo_conductor}}</h5>
+            <h5>Telefono Celular: {{inf.propietario?.telefono_conductor}}</h5>
+          </div>
+          <ng-template #elseBlock>
+            <h4>No existe datos realcionados a esta placa {{inf.placa}}</h4>
+          </ng-template>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

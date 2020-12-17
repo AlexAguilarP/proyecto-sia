@@ -44,24 +44,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
-    title: 'semaforos',
+    title: 'Infracciones',
     icon: 'bulb-outline',
     children: [
       {
-        title: 'Form Inputs',
-        link: '/pages/forms/inputs',
-      },
-      {
-        title: 'Form Layouts',
-        link: '/pages/forms/layouts',
-      },
-      {
-        title: 'Buttons',
-        link: '/pages/forms/buttons',
-      },
-      {
-        title: 'Datepicker',
-        link: '/pages/forms/datepicker',
+        title: 'ver las infracciones',
+        link: '/pages/infracciones',
       },
     ],
   },
