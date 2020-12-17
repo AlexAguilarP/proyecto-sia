@@ -50,7 +50,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   currentTheme = 'default';
 
-  userMenu = [{ title: 'Profile' }, { title: 'Log out' }];
+  userMenu = [{ title: 'Perfil' }, { title: 'Log out' }];
 
   public constructor(
     private sidebarService: NbSidebarService,
@@ -86,6 +86,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
         if (title === 'Log out') {
           this.logout();
           this.router.navigateByUrl('login-register');
+        } else if (title === 'Perfil') {
+          this.router.navigateByUrl('pages/perfil');
         }
       });
     const { xl } = this.breakpointService.getBreakpointsMap();
