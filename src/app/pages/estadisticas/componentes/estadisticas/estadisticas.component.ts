@@ -13,11 +13,12 @@ export class EstadisticasComponent implements OnInit {
   constructor(private firestore: AngularFirestore, private db: AngularFireDatabase) { }
   myArray: any = [];
   arrayInf: any = [];
-  fecha: any;
+  arrayFechas: any = [];
   objeto: any;
   multi: any;
   datos: any;
   contador: any = 0;
+  datosAgrupados: any;
 
   ngOnInit(): void {
     this.db.list('conteo_autos').valueChanges().subscribe(data=>{
@@ -43,27 +44,44 @@ export class EstadisticasComponent implements OnInit {
         }
       ];
     });
-    this.firestore.collection('infracciones').valueChanges().subscribe(data => {
+    this.firestore.collection('infracciones', ref => ref.orderBy('date', 'asc')).valueChanges().subscribe(data => {
       let con = 1
       console.log(data);
+      this.datosAgrupados = data;
+      console.log(con)
 
+      let fecha = new Date(this.datosAgrupados[0].date);
+      console.log(fecha.getDate());
+      console.log(this.datosAgrupados.length);
 
-      /*this.fecha = data[0]['date']
-      for (let index = 1; index < data.length; index++) {
+      this.arrayFechas = [];
 
-        if (this.fecha == data[index]['date']) {
+      for (let index = 0; index < this.datosAgrupados.length; index++) {
+        let fechaDos = new Date(this.datosAgrupados[index].date);
+        console.log(fechaDos.getDate());
+
+        if (fecha.getDate() == fechaDos.getDate()) {
           con = con + 1
         }else{
-
-          this.arrayFechas.push(con)
+          const element = {
+            name: fecha.toLocaleDateString('Es-es', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}),
+            value: con
+          }
+          this.arrayFechas.push(element)
           con = 1
+          fecha = fechaDos
         }
-        this.fecha = data[index]['date']
-
+        if (index + 1 == this.datosAgrupados.length) {
+          const element = {
+            name: fechaDos.toLocaleDateString('Es-es', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}),
+            value: con
+          }
+          this.arrayFechas.push(element)
+        }
       }
-      this.arrayFechas.push(con)
+      //this.arrayFechas.push(con)
 
-      console.log(this.arrayFechas);*/
+      console.log(this.arrayFechas);
 
       for (let index = 0; index < data.length ; index++) {
         const fecha = new Date(data[index]['date']);
@@ -79,7 +97,7 @@ export class EstadisticasComponent implements OnInit {
       this.datos = [
         {
           name: "Cantidad de infracciones",
-          series: this.arrayInf
+          series: this.arrayFechas
         }
       ];
 
