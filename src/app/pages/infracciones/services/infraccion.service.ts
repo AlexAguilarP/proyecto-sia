@@ -28,7 +28,7 @@ export class InfraccionService {
   private infraccionesCollection: AngularFirestoreCollection<Infraccion>;
   infracciones: Observable<Infraccion[]>;
   constructor(private afs: AngularFirestore) {
-    this.infraccionesCollection = afs.collection<Infraccion>('infracciones');
+    this.infraccionesCollection = afs.collection<Infraccion>('infracciones',ref => ref.orderBy('date','desc'));
     this.infracciones = this.infraccionesCollection.snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as Infraccion;
@@ -38,6 +38,6 @@ export class InfraccionService {
     );
   }
   listarInfracciones() {
-    return this.infracciones;
+    return this.afs.collection<Infraccion>('infracciones').valueChanges()
   }
 }

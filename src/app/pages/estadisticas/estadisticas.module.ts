@@ -7,16 +7,21 @@ import { EstadisticasComponent } from './componentes/estadisticas/estadisticas.c
 import { NgxChartsModule }from '@swimlane/ngx-charts';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { NbCardModule } from '@nebular/theme';
 
 
+import { ThemeModule } from '../../@theme/theme.module';
 @NgModule({
   declarations: [EstadisticasComponent],
   imports: [
+
+    ThemeModule,
     CommonModule,
     EstadisticasRoutingModule,
     NgxChartsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    NbCardModule,
   ]
 })
 export class EstadisticasModule { }

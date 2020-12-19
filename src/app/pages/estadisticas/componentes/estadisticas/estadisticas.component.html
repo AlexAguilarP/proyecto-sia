@@ -1,31 +1,22 @@
+<nb-card>
+  <nb-card-header>Grafico Cantidad de Autos</nb-card-header>
+  <nb-card-body>
+
+    <ngx-charts-line-chart [view]="[1000,400]" [scheme]="colorScheme" [legend]="false" [showXAxisLabel]="true"
+      [showYAxisLabel]="true" [xAxis]="true" [yAxis]="true" [xAxisLabel]="'Fecha y hora'"
+      [yAxisLabel]="'Cantidad de autos'" [timeline]="true" [results]="multi">
+    </ngx-charts-line-chart>
 
 
-<ngx-charts-line-chart
-  [view]="[1000,400]"
-  [scheme]="colorScheme"
-  [legend]="false"
-  [showXAxisLabel]="true"
-  [showYAxisLabel]="true"
-  [xAxis]="true"
-  [yAxis]="true"
-  [xAxisLabel]="'Fecha y hora'"
-  [yAxisLabel]="'Cantidad de autos'"
-  [timeline]="true"
-  [results]="multi"
-  >
-</ngx-charts-line-chart>
+  </nb-card-body>
+</nb-card>
+<nb-card>
+  <nb-card-header>Grafico Infracciones</nb-card-header>
+  <nb-card-body>
 
-<ngx-charts-line-chart
-  [view]="[1000,400]"
-  [scheme]="colorScheme"
-  [legend]="false"
-  [showXAxisLabel]="true"
-  [showYAxisLabel]="true"
-  [xAxis]="true"
-  [yAxis]="true"
-  [xAxisLabel]="'Fecha'"
-  [yAxisLabel]="'Cantidad de infracciones'"
-  [timeline]="true"
-  [results]="datos"
-  >
-</ngx-charts-line-chart>
+    <ngx-charts-line-chart [view]="[1000,400]" [scheme]="colorScheme" [legend]="false" [showXAxisLabel]="true"
+      [showYAxisLabel]="true" [xAxis]="true" [yAxis]="true" [xAxisLabel]="'Fecha'"
+      [yAxisLabel]="'Cantidad de infracciones'" [timeline]="true" [results]="datos">
+    </ngx-charts-line-chart>
+  </nb-card-body>
+</nb-card>

@@ -22,7 +22,6 @@ export class InfraccionesComponent implements OnInit {
         this.datos = [];
         res.forEach(element => {
           let r;
-          console.log(element.dueño);
           if (element.dueño != undefined) {
             let pro = element.dueño;
             let d = pro.replace(/'/g, '"');
@@ -42,6 +41,16 @@ export class InfraccionesComponent implements OnInit {
             };
           }
           this.datos.push(r);
+        });
+        this.datos.sort(function (a, b) {
+          if (a.date < b.date) {
+            return 1;
+          }
+          if (a.date > b.date) {
+            return -1;
+          }
+          // a must be equal to b
+          return 0;
         });
         console.log(this.datos);
       }
